@@ -1,19 +1,17 @@
 const express = require('express');
 const cors = require('cors');
-const fetch = require('node-fetch');
+const axios = require('axios');
 const app = express();
 
 app.use(cors());
 
 app.get('/api/products', async (req, res) => {
   try {
-    const response = await fetch('https://api.mercadolibre.com/sites/MCO/search?q=silla+oficina');
-     console.log('Status MercadoLibre:', response.status);
-    const data = await response.json();
+    const { data } = await axios.get('https://api.mercadolibre.com/sites/MCO/search?q=silla+oficina');
     res.json(data);
   } catch (err) {
-     console.error('Error en fetch:', err);
-    res.status(500).json({ error: 'Error al obtener productos' });
+    console.error('Error en axios:', err.message);
+    res.status(500).json({ error: 'Error al obtener productos', detalle: err.message });
   }
 });
 
