@@ -62,3 +62,7 @@ app.post('/api/token', async (req, res) => {
     res.status(500).json({ error: 'Error al obtener token', detalle: err.message });
   }
 });
+
+app.listen(process.env.PORT || 3000, () => {
+  console.log('🚀 Servidor corriendo en Render');
+});
