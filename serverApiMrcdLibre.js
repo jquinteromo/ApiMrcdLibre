@@ -8,9 +8,11 @@ app.use(cors());
 app.get('/api/products', async (req, res) => {
   try {
     const response = await fetch('https://api.mercadolibre.com/sites/MCO/search?q=silla+oficina');
+     console.log('Status MercadoLibre:', response.status);
     const data = await response.json();
     res.json(data);
   } catch (err) {
+     console.error('Error en fetch:', err);
     res.status(500).json({ error: 'Error al obtener productos' });
   }
 });
