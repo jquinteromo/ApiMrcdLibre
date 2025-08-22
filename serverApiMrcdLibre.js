@@ -3,7 +3,7 @@ const cors = require('cors');
 // const axios = require('axios');
 // const app = express();
 
-app.use(cors());
+
 
 // app.get('/api/products', async (req, res) => {
 //   try {
@@ -34,6 +34,7 @@ const axios = require('axios');
 const express = require('express');
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 app.post('/api/token', async (req, res) => {
